@@ -13,7 +13,7 @@ func _ready():
 	
 	# If there is no argument set ammount to 25
 	if not arguments.has("clients"):
-		clients = 25
+		clients = 10
 	else:
 		clients = int(arguments["clients"])
 	

@@ -2,7 +2,7 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var multiplayer_api = MultiplayerAPI.new()
-var ip = "127.0.0.1"
+var ip = "18.118.111.50"
 var port = 1910
 
 var id = 0

@@ -34,7 +34,6 @@ func _ready():
 func _on_check_despawns():
 	for player in get_node("YSort/OtherPlayers").get_children():
 		if world_state_buffer.back().has(player.name) == false:
-			print("huh")
 			DespawnPlayer(player)
 
 func _physics_process(_delta):

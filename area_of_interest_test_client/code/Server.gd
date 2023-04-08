@@ -5,7 +5,7 @@ class_name Server
 var network = NetworkedMultiplayerENet.new()
 var multiplayer_api = MultiplayerAPI.new()
 
-var ip = "127.0.0.1"
+var ip = "18.217.253.10"
 var port = 1909
 
 # Client clock

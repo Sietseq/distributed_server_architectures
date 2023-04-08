@@ -24,6 +24,8 @@ var direction = Vector2()
 var start_pos = Vector2(500, 400)
 var final_pos = Vector2(rand_range(min_region.x, max_region.x), rand_range(min_region.y, max_region.y))
 
+var send_counter = 0
+
 func _ready():
 	randomize()
 	if (start_pos < final_pos):
@@ -63,9 +65,12 @@ func _physics_process(delta):
 			direction.x = 1
 		else:
 			direction.x = -1
-		
-	var player_state = {"time" : client_clock, "pos": pos, "anim": direction}
-	send_player_state(player_state)
+	
+	send_counter += 1
+	if send_counter == 3:
+		send_counter = 0
+		var player_state = {"time" : client_clock, "pos": pos, "anim": direction}
+		send_player_state(player_state)
 
 func connect_to_server():
 	network.create_client(ip, port)
@@ -93,7 +98,7 @@ func _on_connection_failed():
 # ------------------ Client to Server--------------------------
 	
 func determine_latency():
-	rpc_id(1, "DetermineLatency", OS.get_system_time_msecs())
+	rpc_id(1, "determine_latency", OS.get_system_time_msecs())
 	
 func send_player_state(player_state):
 	rpc_unreliable_id(1, "receive_player_state", player_state)

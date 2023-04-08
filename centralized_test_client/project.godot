@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Client",
 "language": "GDScript",
-"path": "res://code/Client.gd"
+"path": "res://code/Server.gd"
 } ]
 _global_script_class_icons={
 "Client": ""

@@ -20,6 +20,8 @@ var players_changing = {}
 var id_counter = 0
 var peer_ids = {}
 
+var despawn_world_state = {}
+
 # Checks if player is fully in region
 func is_area_of_interest_in_region(player_pos: Vector2, radius: float) -> bool:
 	if player_pos.x - radius < mininum.x:
@@ -119,10 +121,21 @@ func _Peer_Disconnected(player_id):
 		if peer_ids[key] == player_id:
 			if (player_state_collection.has(key)):
 				player_state_collection.erase(key)
-			
+
 			# notify all players that player disconnected
 			players_changing.erase(key)
 			peer_ids.erase(key)
+
+func _on_CheckDespawns_timeout():
+	for peer in peer_ids.keys():
+		if despawn_world_state.has(peer) == false:
+			if (player_state_collection.has(peer)):
+				player_state_collection.erase(peer)
+			
+			players_changing.erase(peer)
+			peer_ids.erase(peer)
+	
+	despawn_world_state.clear()
 
 # -------------- Client to server -------------------------
 remote func receive_state(id, state):

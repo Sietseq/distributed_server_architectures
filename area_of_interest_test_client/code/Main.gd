@@ -12,7 +12,7 @@ func _ready():
 			arguments[key_value[0].lstrip("--")] = key_value[1]
 	
 	if not arguments.has("clients"):
-		clients = 50
+		clients = 10
 	else:
 		clients = int(arguments["clients"])
 	

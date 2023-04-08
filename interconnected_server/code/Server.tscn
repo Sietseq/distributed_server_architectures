@@ -7,3 +7,9 @@
 script = ExtResource( 1 )
 
 [node name="ConnectionManager" parent="." instance=ExtResource( 2 )]
+
+[node name="CheckDespawns" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="CheckDespawns" to="." method="_on_CheckDespawns_timeout"]
