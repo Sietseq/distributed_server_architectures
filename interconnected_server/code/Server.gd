@@ -138,9 +138,12 @@ func _on_CheckDespawns_timeout():
 	despawn_world_state.clear()
 
 # -------------- Client to server -------------------------
+
+# Receive state from other server
 remote func receive_state(id, state):
 	other_server_states[id] = state
-	
+
+# Receive forward states
 remote func receive_forward_state(player_id, player_state):
 	if player_state_collection.has(player_id):
 		if player_state_collection[player_id]["time"] < player_state["time"]:
@@ -148,6 +151,7 @@ remote func receive_forward_state(player_id, player_state):
 	else:
 		player_state_collection[player_id] = player_state
 
+# Send player ID to player
 remote func get_player_id():
 	var peer_id = custom_multiplayer.get_rpc_sender_id()
 	var player_id = str(id) + str(id_counter)
@@ -184,6 +188,7 @@ remote func receive_player_state(player_state):
 			send_forward_state(players_changing[player_id], player_id, player_state)
 	
 	# Update own player state
+	# Checks if this is the newest update we have
 	if player_state_collection.has(player_id):
 		if player_state_collection[player_id]["time"] < player_state["time"]:
 			player_state_collection[player_id] = player_state

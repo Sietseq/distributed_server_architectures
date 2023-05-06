@@ -21,3 +21,4 @@ func _ready():
 	for i in range(clients):
 		var new_server = client_instance.instance()
 		add_child(new_server)
+

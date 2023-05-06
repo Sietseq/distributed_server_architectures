@@ -1,6 +1,6 @@
 extends Node
 
-var server_spawn = preload("res://ConnectionManager.tscn")
+var server_spawn = preload("res://code/ConnectionManager.tscn")
 
 func _ready():
 	var arguments = {}
@@ -12,7 +12,7 @@ func _ready():
 			arguments[key_value[0].lstrip("--")] = key_value[1]
 	
 	if not arguments.has("clients"):
-		clients = 50
+		clients = 30
 	else:
 		clients = int(arguments["clients"])
 	

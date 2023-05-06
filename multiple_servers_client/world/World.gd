@@ -61,6 +61,9 @@ func _physics_process(_delta):
 				# If the player is not in both world states
 				if not world_state_buffer[1].has(player):
 					continue
+					
+				if str(player) == ConnectionManager.id:
+					continue
 				
 				# If the player exists in the map lerp it
 				if get_node("YSort/OtherPlayers").has_node(str(player)):
@@ -84,6 +87,9 @@ func _physics_process(_delta):
 				
 				# If the player is not in both world states
 				if not world_state_buffer[0].has(player):
+					continue
+					
+				if str(player) == ConnectionManager.id:
 					continue
 				
 				# If the player is in the map extrapolate it

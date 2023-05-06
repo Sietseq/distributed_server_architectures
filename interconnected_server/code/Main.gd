@@ -16,7 +16,7 @@ var config = {
 		"max" : Vector2(2660 + 600, 1506)
 	},
 	3: {
-		"ip" : "127.0.0.1",
+		"ip" : "127.0.0.11",
 		"port" : 1907,
 		"min" : Vector2(160 - 600, 1506),
 		"max" : Vector2(1410, 2765 + 700)
@@ -29,6 +29,7 @@ var config = {
 	}
 }
 
+# Server ID 
 var id = 0
 
 func _on_Button_pressed():

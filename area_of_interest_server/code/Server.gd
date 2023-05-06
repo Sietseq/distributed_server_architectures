@@ -77,7 +77,8 @@ remote func determine_latency(client_time):
 	
 remote func receive_player_state(player_state):
 	var player_id = custom_multiplayer.get_rpc_sender_id()
-		
+	
+	# Checks if this is the newest update we have
 	if player_state_collection.has(player_id):
 		if player_state_collection[player_id]["time"] < player_state["time"]:
 			player_state_collection[player_id] = player_state

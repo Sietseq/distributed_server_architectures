@@ -62,7 +62,7 @@ func _physics_process(delta):
 				personal_world_state[player] = global_world_state[player]
 				continue
 				
-		rpc_id(connection_ids[key], "receive_db_state", personal_world_state)
+		rpc_unreliable_id(connection_ids[key], "receive_db_state", personal_world_state)
 	
 func StartServer():
 	# Create server

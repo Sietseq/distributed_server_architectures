@@ -41,5 +41,4 @@ func send_state(id, state):
 	rpc_unreliable_id(1, "receive_state", id, state)
 
 func send_forward_state(player_id, player_state):
-	rpc_id(1, "receive_forward_state", player_id, player_state)
-# -------------- Server to client ----------------------------
+	rpc_unreliable_id(1, "receive_forward_state", player_id, player_state)

@@ -38,9 +38,6 @@ func _on_connection_failed():
 	
 
 # -------------- Client to server ----------------------------
-func request_world_state(peer_id, player_id, world_state):
-	rpc_unreliable_id(1, "request_world_state", peer_id, player_id, world_state)
-
 func send_world_state(world_state):
 	rpc_unreliable_id(1, "receive_world_state", world_state)
 

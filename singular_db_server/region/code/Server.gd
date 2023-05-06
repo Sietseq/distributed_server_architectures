@@ -135,7 +135,9 @@ func _peer_disconnected(player_id):
 
 			players_changing.erase(key)
 			peer_ids.erase(key)
-			
+
+# Checks if user may have been disconnected by seeing if they have updated their position since last timeout
+# Godot sometimes does not check this quickly enough.  
 func _on_CheckDespawns_timeout():
 	for peer in peer_ids.keys():
 		if despawn_world_state.has(peer) == false:
@@ -198,7 +200,8 @@ remote func receive_player_state(player_state):
 			players_changing[player_id]["state"] = player_state
 			send_forward_state(players_changing[player_id]["id"], player_id, player_state)
 		
-	# Update own player state 
+	# Update own player state
+	# Checks if this is the newest update we have 
 	if player_state_collection.has(player_id):
 		if player_state_collection[player_id]["time"] < player_state["time"]:
 			player_state_collection[player_id] = player_state

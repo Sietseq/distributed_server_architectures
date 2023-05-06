@@ -1,6 +1,6 @@
 extends Node
 
-var server_spawn = preload("res://code/Server.tscn")
+var server_spawn = preload("res://code/Client.tscn")
 
 func _ready():
 	var arguments = {}
@@ -11,6 +11,7 @@ func _ready():
 			var key_value = argument.split("=")
 			arguments[key_value[0].lstrip("--")] = key_value[1]
 	
+	# Default is 10 test players
 	if not arguments.has("clients"):
 		clients = 10
 	else:
